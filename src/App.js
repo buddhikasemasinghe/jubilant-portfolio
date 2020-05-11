@@ -1,22 +1,20 @@
 import React from 'react';
-import './App.css';
 import {useScrollTrigger} from "@material-ui/core";
 import * as PropTypes from "prop-types";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
-import purple from "@material-ui/core/colors/purple";
 import green from "@material-ui/core/colors/green";
 import {ThemeProvider} from "@material-ui/styles";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import AppHeader from "./components/Header/AppHeader";
 
 const theme = createMuiTheme({
     palette: {
         primary: {
-            main :'#1c1a1a'
+            main: '#1c1a1a'
         },
         secondary: green,
     },
@@ -24,6 +22,13 @@ const theme = createMuiTheme({
         danger: 'orange',
     },
 });
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    }
+}));
+
 
 function ElevationScroll(props) {
     const {children, window} = props;
@@ -51,16 +56,13 @@ ElevationScroll.propTypes = {
 };
 
 function App(props) {
+    const classes = useStyles();
     return (
         <div className="App">
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
                 <ElevationScroll {...props}>
-                    <AppBar>
-                        <Toolbar>
-                            <Typography variant="h6">Buddhika Semasinghe</Typography>
-                        </Toolbar>
-                    </AppBar>
+                    <AppHeader/>
                 </ElevationScroll>
                 <Toolbar/>
                 <Container>
