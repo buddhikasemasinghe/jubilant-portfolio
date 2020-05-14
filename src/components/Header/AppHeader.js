@@ -71,9 +71,9 @@ const AppHeader = () => {
                         </div>
                     </Drawer>
                 </Hidden>
-                <Hidden smDown md>
+                <Hidden smDown>
                     {menuNames.map((text,index) => (
-                        <Button color="inherit">{text}</Button>
+                        <Button key={index} color="inherit">{text}</Button>
                     ))}
                 </Hidden>
             </Toolbar>

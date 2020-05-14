@@ -10,6 +10,9 @@ import green from "@material-ui/core/colors/green";
 import {ThemeProvider} from "@material-ui/styles";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import AppHeader from "./components/Header/AppHeader";
+import HomePage from "./pages/HomePage/HomePage";
+import Experience from "./pages/Experience/Experience";
+import Contact from "./pages/Contact/Contact";
 
 const theme = createMuiTheme({
     palette: {
@@ -65,18 +68,13 @@ function App(props) {
                     <AppHeader/>
                 </ElevationScroll>
                 <Toolbar/>
-                <Container>
-                    <Box my={2}>
-                        {[...new Array(120)]
-                            .map(
-                                () => `Cras mattis consectetur purus sit amet fermentum.
-Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
-                            )
-                            .join('\n')}
-                    </Box>
-                </Container>
+                {/*<Container>*/}
+                    {/*<Box my={2}>*/}
+                        <HomePage />
+                        <Experience />
+                        <Contact />
+                    {/*</Box>*/}
+                {/*</Container>*/}
             </ThemeProvider>
         </div>
     );
