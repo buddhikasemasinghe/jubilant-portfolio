@@ -3,23 +3,25 @@ import {useScrollTrigger} from "@material-ui/core";
 import * as PropTypes from "prop-types";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
-import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import green from "@material-ui/core/colors/green";
 import {ThemeProvider} from "@material-ui/styles";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import AppHeader from "./components/Header/AppHeader";
 import HomePage from "./pages/HomePage/HomePage";
-import Experience from "./pages/Experience/Experience";
+import AboutMe from "./pages/AboutMe/AboutMe";
 import Contact from "./pages/Contact/Contact";
+import MySkills from "./pages/MySkills/MySkills";
 
 const theme = createMuiTheme({
     palette: {
         primary: {
             main: '#1c1a1a'
         },
-        secondary: green,
+        secondary: {
+            main: '#f6f1f1'
+        },
+        text: green
     },
     status: {
         danger: 'orange',
@@ -71,7 +73,8 @@ function App(props) {
                 {/*<Container>*/}
                     {/*<Box my={2}>*/}
                         <HomePage />
-                        <Experience />
+                        <MySkills />
+                        <AboutMe />
                         <Contact />
                     {/*</Box>*/}
                 {/*</Container>*/}
