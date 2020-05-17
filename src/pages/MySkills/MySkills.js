@@ -12,42 +12,43 @@ import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
     root: {
-        maxWidth: 345,
+        backgroundColor: '#a47f6c'
     },
     cardImage :{
         maxHeight: 550,
         minHeight: 400
+    },
+    text: {
+        color: "#051d41"
     }
 });
 
-const MySkills = () => {
+const MySkills = React.forwardRef((props, ref) => {
     const classes = useStyles();
     return (
-        <Container>
+        <Container className={classes.root} ref={ref}>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <Box m={2}>
-                        <Typography variant="h4" align="center" color={"secondary"}>
+                        <Typography variant="h4" align="center" className={classes.text}>
                             What I do
                         </Typography>
                     </Box>
                 </Grid>
                 <Grid item container xs={12} spacing={1}>
                     <Grid lg={4} item>
-                        <Card>
+                        <Card className={classes.text}>
                             <CardActionArea>
                                 <CardMedia
                                     component="img"
-                                    alt="Contemplative Reptile"
                                     className={classes.cardImage}
                                     image="https://i.picsum.photos/id/1062/800/600.jpg"
-                                    title="Contemplative Reptile"
                                 />
                                 <CardContent>
-                                    <Typography gutterBottom variant="h5" component="h2">
+                                    <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
                                         Design
                                     </Typography>
-                                    <Typography variant="body2" color="textSecondary" component="p">
+                                    <Typography variant="body2" className={classes.text} component="p">
                                         Software Design
                                     </Typography>
                                 </CardContent>
@@ -55,20 +56,18 @@ const MySkills = () => {
                         </Card>
                     </Grid>
                     <Grid lg={4} item>
-                        <Card>
+                        <Card className={classes.text}>
                             <CardActionArea>
                                 <CardMedia
                                     component="img"
-                                    alt="Contemplative Reptile"
                                     className={classes.cardImage}
                                     image="https://i.picsum.photos/id/118/1500/1000.jpg"
-                                    title="Contemplative Reptile"
                                 />
                                 <CardContent>
-                                    <Typography gutterBottom variant="h5" component="h2">
+                                    <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
                                         Development
                                     </Typography>
-                                    <Typography variant="body2" color="textSecondary" component="p">
+                                    <Typography variant="body2" className={classes.text} component="p">
                                         Cloud first development
                                     </Typography>
                                 </CardContent>
@@ -76,20 +75,18 @@ const MySkills = () => {
                         </Card>
                     </Grid>
                     <Grid lg={4} item>
-                        <Card>
+                        <Card className={classes.text}>
                             <CardActionArea>
                                 <CardMedia
                                     component="img"
-                                    alt="Contemplative Reptile"
                                     className={classes.cardImage}
                                     image="https://i.picsum.photos/id/1084/4579/3271.jpg"
-                                    title="Contemplative Reptile"
                                 />
                                 <CardContent>
-                                    <Typography gutterBottom variant="h5" component="h2">
+                                    <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
                                         Maintenance
                                     </Typography>
-                                    <Typography variant="body2" color="textSecondary" component="p">
+                                    <Typography variant="body2" className={classes.text} component="p">
                                         CI/CD
                                     </Typography>
                                 </CardContent>
@@ -99,7 +96,7 @@ const MySkills = () => {
                 </Grid>
                 <Grid item xs={12} style={{textAlign: "center"}}>
                     <Box m={2}>
-                        <Button variant="contained" color="secondary">
+                        <Button variant="contained" className={classes.text}>
                             More about me..
                         </Button>
                     </Box>
@@ -107,6 +104,6 @@ const MySkills = () => {
             </Grid>
         </Container>
     )
-}
+})
 
 export default MySkills;

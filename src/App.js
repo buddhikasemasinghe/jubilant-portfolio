@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useScrollTrigger} from "@material-ui/core";
 import * as PropTypes from "prop-types";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -60,24 +60,38 @@ ElevationScroll.propTypes = {
     window: PropTypes.func,
 };
 
-function App(props) {
-    const classes = useStyles();
+const App = (props) => {
+    const homePageRef = useRef(null);
+    const contactPageRef = useRef(null);
+    const aboutRef = useRef(null);
+    const skillsRef = useRef(null);
+
+    const pageRefs = [
+        {
+            ref: homePageRef,
+            title: 'Home'
+        }, {
+            ref: aboutRef,
+            title: 'About Me'
+        }, {
+            ref: skillsRef,
+            title: 'My Skills'
+        }, {
+            ref: contactPageRef,
+            title: 'Contact'
+        }];
     return (
         <div className="App">
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
                 <ElevationScroll {...props}>
-                    <AppHeader/>
+                    <AppHeader pageRef={pageRefs}/>
                 </ElevationScroll>
                 <Toolbar/>
-                {/*<Container>*/}
-                    {/*<Box my={2}>*/}
-                        <HomePage />
-                        <MySkills />
-                        <AboutMe />
-                        <Contact />
-                    {/*</Box>*/}
-                {/*</Container>*/}
+                <HomePage ref={homePageRef}/>
+                <MySkills ref={skillsRef}/>
+                <AboutMe ref={aboutRef}/>
+                <Contact ref={contactPageRef}/>
             </ThemeProvider>
         </div>
     );

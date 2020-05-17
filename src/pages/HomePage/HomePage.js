@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import Box from "@material-ui/core/Box";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Container from "@material-ui/core/Container";
@@ -14,20 +14,23 @@ import CardMedia from "@material-ui/core/CardMedia";
 
 
 const useStyles = makeStyles((theme) => ({
+    root: {
+        backgroundColor: 'black'
+    },
     button: {
         minHeight: '70px',
         minWidth: '300px',
     },
-    cardImage :{
+    cardImage: {
         maxHeight: 550,
         height: 450
     }
 }));
 
-const HomePage = () => {
+const HomePage = React.forwardRef((props, ref) => {
     const classes = useStyles();
     return (
-        <Container my={2}>
+        <Container my={2} className={classes.root} ref={ref}>
             <Grid container spacing={2}>
                 <Grid item xs={12} mt={2}>
                     <Box mt={2}>
@@ -37,8 +40,7 @@ const HomePage = () => {
                                     component="img"
                                     alt="Contemplative Reptile"
                                     className={classes.cardImage}
-                                    image="https://i.picsum.photos/id/871/1600/1400.jpg"
-                                    title="Contemplative Reptile"
+                                    image="https://i.picsum.photos/id/871/1600/1400.jpg?grayscale"
                                 />
                             </CardActionArea>
                         </Card>
@@ -47,7 +49,8 @@ const HomePage = () => {
                 <Grid item xs={12}>
                     <Box m={1}>
                         <Typography variant="h3" align="center" color={"secondary"}>
-                           I  <FavoriteIcon fontSize={"large"} /> programming  <SentimentSatisfiedTwoToneIcon fontSize={"large"}/>
+                            I <FavoriteIcon fontSize={"large"}/> programming <SentimentSatisfiedTwoToneIcon
+                            fontSize={"large"}/>
                         </Typography>
                     </Box>
                 </Grid>
@@ -61,6 +64,6 @@ const HomePage = () => {
             </Grid>
         </Container>
     )
-};
+});
 
 export default HomePage;

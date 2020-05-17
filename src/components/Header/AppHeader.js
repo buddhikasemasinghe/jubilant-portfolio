@@ -13,6 +13,9 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 
 const useStyles = makeStyles((theme) => ({
+    root: {
+        backgroundColor: '#33a3b7'
+    },
     menuButton: {
         marginLeft: theme.spacing(4),
     },
@@ -25,24 +28,33 @@ const useStyles = makeStyles((theme) => ({
     },
     paperAnchorTop: {
         top: '60px',
-        background: '#efd6d6'
+        background: '#33a3b7'
     }
 }));
 
 
-const AppHeader = () => {
+const AppHeader = (props) => {
     const classes = useStyles();
+    const pageRefs = props.pageRef;
     const [state, setState] = useState({
         menu: false
     });
+
+    const handleOnClick = (page) => (event) => {
+        if (pageRefs !== null && page !== null) {
+            page.ref.current.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest"
+            })
+        }
+    }
     const toggleDrawer = (open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
         }
 
-        setState({ ...state, menu: open });
+        setState({...state, menu: open});
     };
-    const menuNames = ['Home', 'About Me', 'My Skills', 'Contact'];
     return (
         <AppBar>
             <Toolbar>
@@ -53,7 +65,7 @@ const AppHeader = () => {
                                 color="inherit"
                                 aria-label="menu"
                                 onClick={toggleDrawer(true)}>
-                        <MenuIcon />
+                        <MenuIcon/>
                     </IconButton>
                     <Drawer anchor="top"
                             open={state['menu']}
@@ -61,18 +73,18 @@ const AppHeader = () => {
                             classes={{paperAnchorTop: classes.paperAnchorTop}}>
                         <div className={classes.fullList} role="presentation">
                             <List>
-                                {menuNames.map((text,index) => (
-                                    <ListItem button key={text}>
-                                        <ListItemText primary={text}/>
+                                {pageRefs.map((page, index) => (
+                                    <ListItem button key={page.title} onClick={handleOnClick(page)}>
+                                        <ListItemText primary={page.title}/>
                                     </ListItem>
-                                    ))}
+                                ))}
                             </List>
                         </div>
                     </Drawer>
                 </Hidden>
                 <Hidden smDown>
-                    {menuNames.map((text,index) => (
-                        <Button key={index} color="inherit">{text}</Button>
+                    {pageRefs.map((page, index) => (
+                        <Button key={index} color="inherit" onClick={handleOnClick(page)}>{page.title}</Button>
                     ))}
                 </Hidden>
             </Toolbar>
